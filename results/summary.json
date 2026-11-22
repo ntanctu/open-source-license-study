@@ -1,0 +1,12 @@
+{
+  "project_count": 3,
+  "distinct_licenses": [
+    "Apache-2.0",
+    "GPL-3.0-or-later",
+    "MIT"
+  ],
+  "commercial_use_allowed_count": 3,
+  "source": "data/projects.json",
+  "observation_date": "2026-11-22",
+  "scope": "Mô tả ba trường hợp; không suy rộng thống kê."
+}

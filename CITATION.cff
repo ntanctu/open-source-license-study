@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Nếu sử dụng dữ liệu hoặc mã của dự án, vui lòng trích dẫn repository này."
+type: software
+title: "Phân tích và so sánh giấy phép phần mềm nguồn mở"
+authors:
+  - family-names: "Nguyễn"
+    given-names: "Thanh An"
+version: 1.0.0
+date-released: 2026-11-22
+license: MIT
+repository-code: "https://github.com/ntanctu/open-source-license-study"
+url: "https://github.com/ntanctu/open-source-license-study"
+abstract: "Nghiên cứu GNU Bash, React và Apache Spark; so sánh GPL, MIT và Apache 2.0 bằng dữ liệu có nguồn và mã Python tái lập."
+keywords:
+  - open-source
+  - software-license
+  - GPL
+  - MIT
+  - Apache-2.0

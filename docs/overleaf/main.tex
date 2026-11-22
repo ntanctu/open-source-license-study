@@ -1,0 +1,203 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[T5]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage[left=2.5cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{lmodern,booktabs,array,tabularx,xcolor,enumitem,fancyhdr}
+\usepackage{hyperref}
+\definecolor{navy}{HTML}{17365D}
+\hypersetup{colorlinks=true,linkcolor=navy,urlcolor=navy,citecolor=navy}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{5pt}
+\renewcommand{\baselinestretch}{1.12}
+\setlist[itemize]{noitemsep,topsep=3pt}
+\setlist[enumerate]{noitemsep,topsep=3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small BTH04 -- Bản quyền nội dung số}
+\fancyhead[R]{\small Nguyễn Thanh An}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{15pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\begin{document}
+\begin{titlepage}
+\centering
+{\large\bfseries ĐẠI HỌC CẦN THƠ\par}
+\vspace{0.5cm}
+{\large BÁO CÁO THỰC HÀNH\par}
+{\normalsize Sáng tạo nội dung số\par}
+\vspace{1.8cm}
+{\color{navy}\rule{\textwidth}{1.3pt}\par}
+\vspace{0.5cm}
+{\LARGE\bfseries YÊU CẦU 4\par}
+\vspace{0.35cm}
+{\LARGE\bfseries BẢN QUYỀN NỘI DUNG SỐ\par}
+\vspace{0.55cm}
+{\Large Phân tích và so sánh giấy phép\\GPL, MIT và Apache 2.0\par}
+\vspace{0.5cm}
+{\color{navy}\rule{\textwidth}{1.3pt}\par}
+\vspace{1cm}
+{\large GNU Bash \quad $\bullet$ \quad React \quad $\bullet$ \quad Apache Spark\par}
+\vspace{1.1cm}
+\begin{tabular}{rl}
+\textbf{Hình thức:} & Cá nhân\\
+\textbf{Người thực hiện:} & Nguyễn Thanh An\\
+\textbf{Tài khoản GitHub:} & ntanctu\\
+\textbf{Giấy phép project:} & MIT\\
+\textbf{Phiên bản:} & 1.0.0
+\end{tabular}
+\vfill
+\begin{minipage}{0.96\textwidth}
+\small\textbf{Sản phẩm:} Repository có dữ liệu, mã Python, kết quả tái lập, LICENSE, hướng dẫn đóng góp, thông tin trích dẫn và báo cáo LaTeX.\\[4pt]
+\textbf{Repository:} \url{https://github.com/ntanctu/open-source-license-study}
+\end{minipage}
+\vspace{0.7cm}
+{\large Cần Thơ, ngày 22 tháng 11 năm 2026\par}
+\end{titlepage}
+
+\section{Mục tiêu, phạm vi và phương pháp}
+Bài thực hành xây dựng một project có quản lý bản quyền trên GitHub và phân tích ba dự án CNTT dùng ba giấy phép khác nhau: GNU Bash (GPL-3.0-or-later), React (MIT) và Apache Spark (Apache-2.0). Mục tiêu là đối chiếu quyền sử dụng, sửa đổi, phân phối; tác động cộng đồng; khả năng thương mại hóa và tích hợp vào sản phẩm đóng.
+
+Quy trình gồm đọc văn bản giấy phép và tài liệu chính thức; ghi nguồn và ngày truy cập; chuẩn hóa thông tin vào JSON; dùng Python xuất bảng; phân tích tình huống và lựa chọn giấy phép. Tài liệu được kiểm tra ngày \textbf{22/11/2026}. Ba trường hợp được chọn có chủ đích, không phải mẫu thống kê đại diện.
+
+Cần phân biệt quyền tác giả, giấy phép và trích dẫn học thuật. Đưa mã lên GitHub không tự làm mất quyền tác giả; ghi nguồn không thay thế nghĩa vụ giấy phép. Những đánh giá về tác động cộng đồng và lựa chọn giấy phép trong bài là nhận định của người viết dựa trên điều khoản, không phải kết quả đo lường nhân quả.
+
+\section{Xây dựng repository GitHub}
+\subsection{Tên, chức năng và cấu trúc}
+Tên \texttt{open-source-license-study} phản ánh nội dung nghiên cứu. README giới thiệu đề tài, mục tiêu, phương pháp, kết quả và cách chạy. Chương trình đọc dữ liệu của ba dự án, kiểm tra cấu trúc rồi xuất Markdown, CSV và JSON; không tự nhận dạng giấy phép từ mã nguồn.
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{4.4cm}Y@{}}
+\toprule
+\textbf{Tệp hoặc thư mục} & \textbf{Vai trò}\\
+\midrule
+\texttt{data/projects.json} & Dữ liệu dự án, giấy phép, nguồn và ngày truy cập.\\
+\texttt{src/analyze\_licenses.py} & Kiểm tra đầu vào và tạo kết quả.\\
+\texttt{results/} & Bảng CSV, Markdown và bản tóm tắt JSON.\\
+\texttt{docs/overleaf/main.tex} & Báo cáo tiếng Việt dùng pdfLaTeX.\\
+\texttt{LICENSE} & Toàn văn MIT cho nội dung gốc.\\
+\texttt{CONTRIBUTING.md} & Hướng dẫn đóng góp và kiểm tra.\\
+\texttt{CITATION.cff} & Thông tin trích dẫn có cấu trúc.\\
+\texttt{tests/} & Kiểm thử đầu ra và xử lý dữ liệu sai.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\subsection{Quản lý quyền và ghi nhận}
+MIT được ghi rõ trong README và lưu đầy đủ tại LICENSE. Giấy phép của project áp dụng cho mã Python, dữ liệu tổng hợp và nội dung trình bày gốc. Project không đóng gói mã nguồn Bash, React hoặc Spark và không tái cấp phép các dự án đó.
+
+CITATION.cff ghi tác giả, tên dự án, phiên bản, ngày phát hành và URL. CONTRIBUTING.md yêu cầu dẫn nguồn khi sửa kết luận, chạy lại chương trình và chỉ đóng góp nội dung có quyền sử dụng. Các tệp này giúp người khác tái sử dụng có trách nhiệm và truy xuất được nguồn gốc.
+
+\section{Phân tích ba dự án nguồn mở}
+\subsection{GNU Bash -- GPL phiên bản 3 hoặc mới hơn}
+\textbf{Mục tiêu và ứng dụng.} Bash là shell và ngôn ngữ lệnh dùng cho thao tác tương tác, script và tự động hóa hệ thống. Có thể ứng dụng vào sao lưu hoặc điều phối chuỗi lệnh. GNU công bố Bash theo GPL phiên bản 3 hoặc phiên bản mới hơn; vì vậy cần ghi đúng \texttt{GPL-3.0-or-later}, không chỉ ghi tên họ giấy phép \cite{bash}.
+
+\textbf{Cộng đồng và mức độ phổ biến.} Bash thuộc hệ sinh thái GNU, có tài liệu, kênh báo lỗi và danh sách thư. Phạm vi sử dụng gắn với shell và tác vụ tự động hóa trong môi trường Unix/GNU \cite{bash,bashmanual}. Bài không lấy số sao của một mirror GitHub làm đại diện cho toàn bộ cộng đồng Bash, vì cấu trúc lưu trữ và hoạt động đóng góp khác với React và Spark.
+
+\textbf{Giấy phép và hạn chế.} GPLv3 cho phép sử dụng thương mại. Khi phân phối bản sửa đổi thuộc phạm vi GPL, phải giữ điều kiện copyleft và thông báo phù hợp; phân phối dạng nhị phân đòi hỏi đáp ứng nghĩa vụ nguồn tương ứng theo Điều 6. Việc sửa hoặc dùng riêng tư không tự phát sinh nghĩa vụ công bố cho toàn thế giới \cite{gpl}.
+
+\textbf{Tình huống và nhận định.} Doanh nghiệp sửa Bash rồi giao bản thực thi cho khách hàng cần chuẩn bị nguồn tương ứng và điều kiện phân phối. Script độc lập không mặc nhiên chịu GPL chỉ vì được trình thông dịch GPL thực thi; phải xét quan hệ giữa các thành phần \cite{gplfaq}. Người viết nhận định copyleft giúp bảo vệ quyền người nhận đối với bản cải tiến được phân phối, đồng thời tăng yêu cầu quản lý tuân thủ khi kết hợp mã.
+
+\subsection{React -- MIT}
+\textbf{Mục tiêu và ứng dụng.} React là thư viện JavaScript xây dựng giao diện theo thành phần. Có thể dùng cho màn hình bài tập, bảng kết quả hoặc thành phần tương tác của hệ thống quản trị học tập; đây là ví dụ ứng dụng, không phải sản phẩm đã triển khai trong bài \cite{react}.
+
+\textbf{Cộng đồng và mức độ phổ biến.} Dự án có issue, pull request và hướng dẫn đóng góp. Trang đội ngũ mô tả các nhóm công tác như DOM, Server, Compiler, Docs \& Community \cite{reactteam}. Khi kiểm tra, GitHub hiển thị khoảng \textbf{252,8 nghìn sao} và \textbf{51,8 nghìn fork} \cite{react}. Số liệu làm tròn thể hiện sự quan tâm trên GitHub, không phải số người dùng hay thị phần.
+
+\textbf{Giấy phép và hạn chế.} LICENSE của React là MIT \cite{reactlicense}. MIT cho phép dùng, sửa, phân phối và bán phần mềm, với điều kiện giữ thông báo bản quyền và thông báo cho phép trong bản sao hoặc phần đáng kể. MIT không bắt buộc công bố mã sửa đổi và có nội dung miễn bảo đảm, giới hạn trách nhiệm \cite{mit}.
+
+\textbf{Tình huống và nhận định.} Ứng dụng giao diện thương mại có thể dùng React và giữ kín phần mã riêng, nhưng vẫn phải chuyển tiếp thông báo cần thiết. Người viết nhận định điều kiện gọn giúp dễ tích hợp; đổi lại, việc trả lại cải tiến dựa nhiều vào động lực tự nguyện. Cho phép rộng không có nghĩa là không có nghĩa vụ.
+
+\subsection{Apache Spark -- Apache License 2.0}
+\textbf{Mục tiêu và ứng dụng.} Spark phục vụ xử lý và phân tích dữ liệu quy mô lớn, với SQL/DataFrame, xử lý luồng và học máy. Có thể dùng để xử lý nhật ký hệ thống hoặc dữ liệu đặt phòng trên nhiều máy; bài không thực hiện phép đo hiệu năng Spark \cite{spark}.
+
+\textbf{Cộng đồng và mức độ phổ biến.} Dự án có quy trình review Pull Request, hỗ trợ người dùng qua danh sách thư và thử nghiệm bản phát hành. Đóng góp còn bao gồm tài liệu và kiểm tra \cite{sparkcontrib}. GitHub hiển thị khoảng \textbf{44,6 nghìn sao} và \textbf{29,5 nghìn fork} khi truy cập \cite{spark}. Do khác lĩnh vực, không dùng chênh lệch số sao để xếp hạng chất lượng Spark so với React.
+
+\textbf{Giấy phép và hạn chế.} Spark sử dụng Apache 2.0; LICENSE còn ghi nhận các thành phần liên quan \cite{sparklicense}. Khi phân phối cần kèm giấy phép, đánh dấu tệp đã thay đổi, giữ thông báo liên quan và phần NOTICE cần thiết nếu có. Điều 3 cấp quyền sáng chế trong phạm vi quy định và nêu trường hợp chấm dứt quyền đó khi khởi kiện. Giấy phép không mặc nhiên cấp quyền dùng nhãn hiệu để quảng bá sản phẩm \cite{apache}.
+
+\textbf{Tình huống và nhận định.} Khi đóng gói Spark trong sản phẩm thương mại, cần kiểm tra LICENSE, NOTICE và giấy phép phụ thuộc của gói thực tế. Người viết nhận định điều khoản sáng chế hỗ trợ hợp tác doanh nghiệp; yêu cầu ghi nhận làm khâu chuẩn bị bản phân phối chi tiết hơn MIT.
+
+\section{So sánh giấy phép}
+Bảng~\ref{comparison} tổng hợp từ văn bản gốc \cite{gpl,mit,apache}. Với Bash, GPLv3 là cơ sở phân tích; tuyên bố của dự án còn cho phép lựa chọn phiên bản mới hơn.
+\begin{table}[htbp]
+\centering\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{}p{2.5cm}YYY@{}}
+\toprule
+\textbf{Tiêu chí} & \textbf{GPLv3} & \textbf{MIT} & \textbf{Apache 2.0}\\
+\midrule
+Dùng, sửa & Cho phép & Cho phép & Cho phép\\
+Thương mại & Cho phép & Cho phép & Cho phép\\
+Phân phối & Kèm GPL, giữ thông báo; tuân thủ copyleft & Giữ bản quyền và thông báo cho phép & Kèm giấy phép; ghi thay đổi; NOTICE khi có\\
+Nghĩa vụ nguồn & Có khi phân phối thuộc phạm vi GPL & Không buộc công bố & Không buộc công bố\\
+Sản phẩm đóng & Không đóng riêng tác phẩm phái sinh thuộc GPL khi phân phối & Có thể nếu giữ thông báo & Có thể nếu đủ điều kiện\\
+Sáng chế & Có Điều 11 & Không có điều khoản tường minh tương tự Apache & Cấp quyền và điều kiện chấm dứt tại Điều 3\\
+Bảo đảm & Có miễn bảo đảm, giới hạn trách nhiệm & Có miễn bảo đảm, giới hạn trách nhiệm & Có miễn bảo đảm, giới hạn trách nhiệm\\
+\bottomrule
+\end{tabularx}
+\caption{Quyền, nghĩa vụ và khả năng tích hợp vào sản phẩm đóng.}
+\label{comparison}
+\end{table}
+
+\subsection{Tác động đến cộng đồng}
+Các nhận định sau là phân tích của người viết. GPL ưu tiên duy trì quyền của người nhận đối với tác phẩm được phân phối, nhưng không tự bảo đảm dự án luôn có người duy trì. MIT tạo điều kiện tái sử dụng với ít nghĩa vụ hơn; bản cải tiến có thể được giữ kín. Apache 2.0 thuận lợi cho tích hợp và quy định rõ hơn về sáng chế, ghi nhận, phù hợp nhu cầu phối hợp nhiều tổ chức.
+
+Sức khỏe cộng đồng còn phụ thuộc tài liệu, quản trị, chất lượng mã và tốc độ phản hồi. Giấy phép chỉ là một yếu tố; không suy ra quan hệ nhân quả giữa loại giấy phép và số sao GitHub từ ba trường hợp của bài.
+
+\section{Tình huống tuân thủ}
+\begin{enumerate}
+\item \textbf{Dùng nội bộ:} xác định có phân phối bản sao cho chủ thể khác hay không; không gộp mọi hành vi chạy phần mềm vào hành vi phân phối.
+\item \textbf{Bán sản phẩm:} lập danh mục thành phần, phiên bản, giấy phép và thông báo; kiểm tra cả phụ thuộc. Việc thu phí không tự làm GPL bị cấm.
+\item \textbf{Phân phối Bash đã sửa:} chuẩn bị nguồn tương ứng và ghi nhận thay đổi; chỉ dẫn tới nguồn nguyên bản chưa đủ nếu bản thực thi đã khác.
+\item \textbf{Phân phối ứng dụng React:} duy trì thông báo MIT trong gói phát hành hoặc thông báo bên thứ ba phù hợp.
+\item \textbf{Phân phối gói có Spark:} rà soát LICENSE/NOTICE thực tế và các tệp đã sửa; không nhầm quyền sáng chế với quyền dùng nhãn hiệu.
+\end{enumerate}
+Các tình huống dựa trên điều khoản \cite{gpl,gplfaq,mit,apache,apachefaq}. Ranh giới tác phẩm phái sinh và nghĩa vụ của từng thành phần phải được xác định từ cách kết hợp, bản phân phối cụ thể.
+
+\section{Lựa chọn giấy phép phù hợp}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{2.0cm}YY@{}}
+\toprule
+\textbf{Giấy phép} & \textbf{Dự án phù hợp} & \textbf{Mục tiêu ưu tiên}\\
+\midrule
+GPLv3 & Công cụ muốn bản phái sinh được phân phối tiếp tục bảo đảm quyền nguồn & Duy trì copyleft và quyền của người nhận.\\
+MIT & Mã minh họa, thư viện nhỏ, công cụ học tập và nghiên cứu & Tái sử dụng rộng, điều kiện đơn giản.\\
+Apache 2.0 & Nền tảng hoặc thư viện hợp tác nhiều tổ chức & Tích hợp thuận tiện, điều khoản sáng chế rõ.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+Đây là khuyến nghị theo mục tiêu, không phải quy tắc bắt buộc theo ngành. Với project cá nhân này, \textbf{MIT} phù hợp vì mã chỉ dùng thư viện chuẩn Python, mục tiêu là dễ tái sử dụng và không đòi hỏi mọi bản sửa được phân phối phải mở nguồn. Người thực hiện chấp nhận khả năng bên khác giữ kín cải tiến, đồng thời yêu cầu bảo toàn thông báo MIT. Lựa chọn này chỉ áp dụng cho phần nội dung có quyền cấp phép.
+
+\section{Kết quả và khả năng tái lập}
+Từ thư mục gốc repository, chạy:
+\begin{verbatim}
+python3 src/analyze_licenses.py
+python3 -m unittest discover -s tests -v
+\end{verbatim}
+Các tệp \texttt{comparison.csv}, \texttt{comparison.md}, \texttt{summary.json} được tạo trong \texttt{results/}. CSV dùng UTF-8 có BOM để thuận tiện mở bằng Excel. Bản tóm tắt ghi nhận \textbf{3 dự án}, \textbf{3 giấy phép khác nhau} và \textbf{3 trường hợp cho phép dùng thương mại}. Đây chỉ là thống kê của tập dữ liệu nghiên cứu.
+
+Bốn kiểm thử kiểm tra đầu ra đủ ba dự án và giữ tiếng Việt; từ chối dự án trùng; từ chối dữ liệu thiếu nguồn; phát hiện giấy phép không khớp hồ sơ. Kiểm thử kỹ thuật không tự chứng minh diễn giải giấy phép đúng: đối chiếu nguồn vẫn là công việc riêng.
+
+Báo cáo soạn bằng LaTeX, dùng \texttt{main.tex} và trình biên dịch \texttt{pdfLaTeX} trên Overleaf. Tài liệu tham khảo đã tích hợp, không cần BibTeX hay hình bên ngoài. Có thể trích dẫn repository: \textit{Nguyễn Thanh An (2026). Phân tích và so sánh giấy phép phần mềm nguồn mở, phiên bản 1.0.0. GitHub.}
+
+\section{Kết luận}
+Bản quyền nội dung số cần được quản lý ngay từ cấu trúc project, giấy phép và nguồn dẫn. Cả ba trường hợp cho phép thương mại hóa nhưng kèm điều kiện khác nhau. GPL chú trọng copyleft khi phân phối; MIT ưu tiên sự đơn giản; Apache 2.0 kết hợp khả năng tích hợp với điều khoản sáng chế và ghi nhận.
+
+Sản phẩm thực hành gồm repository có thể kiểm tra, chạy lại và báo cáo đối chiếu quyền, nghĩa vụ, cộng đồng, tình huống áp dụng. Trách nhiệm của người sử dụng là xác định đúng thành phần, đọc giấy phép của phiên bản thực tế, giữ thông báo cần thiết và trích dẫn trung thực.
+
+\clearpage
+\begin{thebibliography}{99}\small
+\bibitem{bash} GNU Project. \textit{Bash}. \url{https://www.gnu.org/software/bash/}.
+\bibitem{bashmanual} GNU Project. \textit{GNU Bash manual}. \url{https://www.gnu.org/software/bash/manual/}.
+\bibitem{gpl} Free Software Foundation. \textit{GNU General Public License, version 3}, 29/06/2007. \url{https://www.gnu.org/licenses/gpl-3.0.html}.
+\bibitem{gplfaq} Free Software Foundation. \textit{Frequently Asked Questions about the GNU Licenses}. \url{https://www.gnu.org/licenses/gpl-faq.html}.
+\bibitem{react} React contributors. \textit{React repository}. \url{https://github.com/react/react}.
+\bibitem{reactlicense} React contributors. \textit{LICENSE}. \url{https://github.com/react/react/blob/main/LICENSE}.
+\bibitem{mit} Open Source Initiative. \textit{The MIT License}. \url{https://opensource.org/license/mit}.
+\bibitem{reactteam} React. \textit{Meet the Team}. \url{https://react.dev/community/team}.
+\bibitem{spark} Apache Software Foundation. \textit{Apache Spark repository}. \url{https://github.com/apache/spark}.
+\bibitem{sparklicense} Apache Software Foundation. \textit{Spark LICENSE}. \url{https://github.com/apache/spark/blob/master/LICENSE}.
+\bibitem{apache} Apache Software Foundation. \textit{Apache License, Version 2.0}, 01/2004. \url{https://www.apache.org/licenses/LICENSE-2.0}.
+\bibitem{sparkcontrib} Apache Spark. \textit{Contributing to Spark}. \url{https://spark.apache.org/contributing.html}.
+\bibitem{apachefaq} Apache Software Foundation. \textit{Apache Licensing and Distribution FAQ}. \url{https://www.apache.org/foundation/license-faq}.
+\end{thebibliography}
+\noindent\small\textbf{Ngày truy cập:} 22/11/2026. Chỉ số GitHub là số hiển thị làm tròn; trang nguồn và nhánh mặc định có thể tiếp tục thay đổi.
+\end{document}

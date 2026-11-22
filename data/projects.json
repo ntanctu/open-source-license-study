@@ -1,0 +1,66 @@
+[
+  {
+    "project": "GNU Bash",
+    "license": "GPL-3.0-or-later",
+    "category": "Copyleft mạnh",
+    "purpose": "Shell và ngôn ngữ lệnh; tự động hóa tác vụ hệ thống.",
+    "commercial_use": true,
+    "modified_source_on_distribution": "Cung cấp mã nguồn tương ứng khi phân phối dạng nhị phân thuộc phạm vi GPL; đáp ứng Điều 6.",
+    "closed_derivative_distribution": "Không thể phân phối tác phẩm phái sinh thuộc GPL chỉ theo điều khoản độc quyền.",
+    "notices": "Giữ thông báo; kèm GPL; ghi thay đổi và ngày thay đổi theo điều kiện áp dụng.",
+    "patents": "Có điều khoản về sáng chế tại Điều 11 GPLv3.",
+    "community": "Dự án GNU; phát triển và trao đổi qua hệ thống GNU/Savannah và danh sách thư.",
+    "stars_display": null,
+    "forks_display": null,
+    "metric_note": "Không dùng sao của bản mirror GitHub để đại diện cho toàn bộ cộng đồng Bash.",
+    "sources": [
+      "https://www.gnu.org/software/bash/",
+      "https://www.gnu.org/licenses/gpl-3.0.html",
+      "https://www.gnu.org/licenses/gpl-faq.html"
+    ],
+    "accessed": "2026-11-22"
+  },
+  {
+    "project": "React",
+    "license": "MIT",
+    "category": "Cho phép rộng",
+    "purpose": "Thư viện JavaScript xây dựng giao diện theo thành phần.",
+    "commercial_use": true,
+    "modified_source_on_distribution": "Không bắt buộc công bố mã nguồn theo MIT.",
+    "closed_derivative_distribution": "Cho phép nếu giữ thông báo bản quyền và giấy phép.",
+    "notices": "Giữ thông báo bản quyền và thông báo cho phép trong bản sao hoặc phần đáng kể.",
+    "patents": "MIT không có điều khoản cấp quyền sáng chế tường minh như Apache 2.0.",
+    "community": "Các nhóm công tác và cộng tác viên từ nhiều tổ chức; issue và pull request công khai.",
+    "stars_display": "252.8k",
+    "forks_display": "51.8k",
+    "metric_note": "Số làm tròn hiển thị trên GitHub khi truy cập; không phải số người dùng.",
+    "sources": [
+      "https://github.com/react/react",
+      "https://github.com/react/react/blob/main/LICENSE",
+      "https://react.dev/community/team"
+    ],
+    "accessed": "2026-11-22"
+  },
+  {
+    "project": "Apache Spark",
+    "license": "Apache-2.0",
+    "category": "Cho phép rộng",
+    "purpose": "Xử lý và phân tích dữ liệu quy mô lớn, SQL, streaming và học máy.",
+    "commercial_use": true,
+    "modified_source_on_distribution": "Không bắt buộc công bố mã nguồn chỉ vì Apache 2.0.",
+    "closed_derivative_distribution": "Cho phép nếu tuân thủ điều kiện phân phối và thông báo.",
+    "notices": "Kèm giấy phép; ghi tệp đã sửa; giữ thông báo liên quan; giữ NOTICE phù hợp nếu có.",
+    "patents": "Cấp quyền sáng chế trong phạm vi đóng góp; chấm dứt quyền đó khi khởi kiện theo Điều 3.",
+    "community": "Cộng đồng Apache; review pull request, danh sách thư và thử nghiệm/phê duyệt phát hành.",
+    "stars_display": "44.6k",
+    "forks_display": "29.5k",
+    "metric_note": "Số làm tròn hiển thị trên GitHub khi truy cập; không phải số người dùng.",
+    "sources": [
+      "https://github.com/apache/spark",
+      "https://github.com/apache/spark/blob/master/LICENSE",
+      "https://www.apache.org/licenses/LICENSE-2.0",
+      "https://spark.apache.org/contributing.html"
+    ],
+    "accessed": "2026-11-22"
+  }
+]
